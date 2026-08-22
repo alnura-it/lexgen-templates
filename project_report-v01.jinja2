@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 24mm 16mm 18mm 16mm;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        font-size: 12px;
+        color: #1f2937;
+        position: relative;
+      }
+
+      .watermark {
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-28deg);
+        font-size: 74px;
+        color: rgba(220, 38, 38, 0.14);
+        letter-spacing: 7px;
+        font-weight: 700;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #0f766e;
+        margin-bottom: 14px;
+      }
+
+      .letterhead {
+        width: 84px;
+        height: 84px;
+        object-fit: contain;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .meta {
+        margin: 0;
+        color: #4b5563;
+      }
+
+      h2 {
+        margin: 18px 0 6px;
+        font-size: 16px;
+        color: #0f766e;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+
+      th,
+      td {
+        border: 1px solid #cbd5e1;
+        padding: 7px;
+        text-align: left;
+      }
+
+      th {
+        background: #f1f5f9;
+      }
+
+      .note {
+        margin-top: 14px;
+        padding: 10px;
+        background: #ecfeff;
+        border-left: 4px solid #0891b2;
+      }
+    </style>
+  </head>
+  <body>
+    {% if meta is defined and meta.is_draft is defined and meta.is_draft %}
+    <div class="watermark">DRAFT</div>
+    {% endif %}
+
+    <div class="content">
+      <header class="header">
+        <img class="letterhead" src="{{ letterhead.image_url }}" alt="Letterhead logo" />
+        <div>
+          <h1>{{ organization.name }}</h1>
+          <p class="meta">{{ organization.address }}</p>
+          <p class="meta">{{ organization.email }} | {{ organization.phone }}</p>
+        </div>
+      </header>
+
+      <section>
+        <h2>{{ title }}</h2>
+        <p><strong>Document ID:</strong> {{ document.id }}</p>
+        <p><strong>Prepared For:</strong> {{ recipient.name }}</p>
+        <p><strong>Date:</strong> {{ document.date }}</p>
+      </section>
+
+      {% if sections.show_summary %}
+      <section>
+        <h2>Executive Summary</h2>
+        <p>{{ summary }}</p>
+      </section>
+      {% endif %}
+
+      {% if sections.show_milestones %}
+      <section>
+        <h2>Milestones</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Milestone</th>
+              <th>Owner</th>
+              <th>Status</th>
+              <th>Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in milestones %}
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.owner }}</td>
+              <td>{{ item.status }}</td>
+              <td>{{ item.due_date }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+      {% endif %}
+
+      {% if sections.show_risks %}
+      <section>
+        <h2>Risk Register</h2>
+        <ul>
+          {% for risk in risks %}
+          <li><strong>{{ risk.level }}:</strong> {{ risk.description }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {% if sections.show_budget %}
+      <section>
+        <h2>Budget Snapshot</h2>
+        <p><strong>Approved Budget:</strong> {{ budget.currency }} {{ budget.approved }}</p>
+        <p><strong>Spent to Date:</strong> {{ budget.currency }} {{ budget.spent }}</p>
+      </section>
+      {% endif %}
+
+      {% if sections.show_approval and approver is defined %}
+      <section>
+        <h2>Approval</h2>
+        <p><strong>Approver:</strong> {{ approver.name }}</p>
+        <p><strong>Role:</strong> {{ approver.role }}</p>
+      </section>
+      {% endif %}
+
+      {% if sections.show_notes and notes is defined and notes|length > 0 %}
+      <div class="note">
+        <strong>Notes</strong>
+        <ul>
+          {% for note in notes %}
+          <li>{{ note }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
