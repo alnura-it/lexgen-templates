@@ -1,0 +1,305 @@
+{% set defaults = {
+  "show_draft_watermark": true,
+  "draft_watermark_text": "BORRADOR",
+  "numero_escritura": "NUMERO: 0001",
+  "city": "Almoradi",
+  "grant_date": "08 de septiembre de 2026",
+  "notary_name": "Nombre del Notario",
+  "notary_college": "Ilustre Colegio de Valencia",
+  "company_name": "Empresa Ejemplo, Sociedad Limitada",
+  "statute_folios": 8,
+  "statute_series": "A",
+  "statute_numbers": "1001-1008",
+  "capital_total_eur": 30000,
+  "shares_total": 300,
+  "share_nominal_eur": 100,
+  "administrator_scope": "Administrador unico",
+  "administrator_term": "INDEFINIDO",
+  "administrator_name": "Pendiente",
+  "tax_exemption_article": "Articulo 45.1B.11",
+  "notary_address": "calle Mayor, numero 18-1, Almoradi (Alicante)",
+  "matrix_folios_total": 11,
+  "matrix_series": "A",
+  "matrix_following_folios": 10
+} %}
+
+{% set numero_escritura = numero_escritura | default(defaults.numero_escritura) %}
+{% set city = city | default(defaults.city) %}
+{% set grant_date = grant_date | default(defaults.grant_date) %}
+{% set notary_name = notary_name | default(defaults.notary_name) %}
+{% set notary_college = notary_college | default(defaults.notary_college) %}
+{% set company_name = company_name | default(defaults.company_name) %}
+{% set statute_folios = statute_folios | default(defaults.statute_folios) %}
+{% set statute_series = statute_series | default(defaults.statute_series) %}
+{% set statute_numbers = statute_numbers | default(defaults.statute_numbers) %}
+{% set capital_total_eur = capital_total_eur | default(defaults.capital_total_eur) %}
+{% set shares_total = shares_total | default(defaults.shares_total) %}
+{% set share_nominal_eur = share_nominal_eur | default(defaults.share_nominal_eur) %}
+{% set administrator_scope = administrator_scope | default(defaults.administrator_scope) %}
+{% set administrator_term = administrator_term | default(defaults.administrator_term) %}
+{% set administrator_name = administrator_name | default(defaults.administrator_name) %}
+{% set tax_exemption_article = tax_exemption_article | default(defaults.tax_exemption_article) %}
+{% set notary_address = notary_address | default(defaults.notary_address) %}
+{% set matrix_folios_total = matrix_folios_total | default(defaults.matrix_folios_total) %}
+{% set matrix_series = matrix_series | default(defaults.matrix_series) %}
+{% set matrix_following_folios = matrix_following_folios | default(defaults.matrix_following_folios) %}
+{% set show_draft_watermark = show_draft_watermark | default(defaults.show_draft_watermark) %}
+{% set draft_watermark_text = draft_watermark_text | default(defaults.draft_watermark_text) %}
+
+{% set visible_sections = visible_sections | default({}) %}
+{% set sections = {
+  "primero_constitucion": visible_sections.get("primero_constitucion", true),
+  "segundo_capital": visible_sections.get("segundo_capital", true),
+  "tercero_administracion": visible_sections.get("tercero_administracion", true),
+  "cuarto_estipulaciones": visible_sections.get("cuarto_estipulaciones", true),
+  "quinto_inhabilidades": visible_sections.get("quinto_inhabilidades", true),
+  "sexto_certificacion": visible_sections.get("sexto_certificacion", true),
+  "septimo_tramitacion": visible_sections.get("septimo_tramitacion", true),
+  "octavo_copia": visible_sections.get("octavo_copia", true),
+  "noveno_subsanacion": visible_sections.get("noveno_subsanacion", true),
+  "decimo_exenciones": visible_sections.get("decimo_exenciones", true),
+  "otorgamiento": visible_sections.get("otorgamiento", true),
+  "firmas": visible_sections.get("firmas", true)
+} %}
+
+{% set comparecientes = comparecientes | default([]) %}
+{% set socios = socios | default([]) %}
+{% set signatories = signatories | default([]) %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Escritura de Constitucion - {{ company_name }}</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      line-height: 1.45;
+      margin: 34px 46px;
+      color: #111;
+      font-size: 13px;
+      position: relative;
+    }
+    .watermark {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-28deg);
+      font-size: 80px;
+      letter-spacing: 4px;
+      color: rgba(120, 120, 120, 0.14);
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    h1, h2 {
+      text-align: center;
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    h1 { font-size: 17px; text-transform: uppercase; }
+    h2 { font-size: 14px; text-transform: uppercase; }
+    p { margin: 8px 0; text-align: justify; }
+    .section-title { font-weight: 700; text-transform: uppercase; }
+    .number-line { margin-bottom: 12px; }
+    .signature-grid {
+      margin-top: 22px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .signature-grid td {
+      vertical-align: top;
+      width: 50%;
+      padding: 8px 10px 18px 0;
+    }
+    .signature-line {
+      margin-top: 36px;
+      border-top: 1px solid #222;
+      padding-top: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  {% if show_draft_watermark %}
+  <div class="watermark">{{ draft_watermark_text }}</div>
+  {% endif %}
+
+  <div class="content">
+    <h1>ESCRITURA DE CONSTITUCION DE SOCIEDAD DE RESPONSABILIDAD LIMITADA</h1>
+    <h2>REAL DECRETO 13/2010</h2>
+
+    <p class="number-line"><strong>{{ numero_escritura }}</strong></p>
+
+    <p>En {{ city }}, mi residencia, a {{ grant_date }}.</p>
+    <p>
+      Ante mi, {{ notary_name }}, Notario del {{ notary_college }},
+      <strong>COMPARECEN:</strong>
+    </p>
+
+    {% if comparecientes | length == 0 %}
+    <p>Sin comparecientes cargados.</p>
+    {% else %}
+      {% for person in comparecientes %}
+      <p>
+        {{ loop.index }}. {{ person.full_name | default("Pendiente") }},
+        {{ person.id_document_type | default("DNI") }} {{ person.id_document | default("Pendiente") }},
+        domicilio en {{ person.address | default("Pendiente") }}.
+      </p>
+      {% endfor %}
+    {% endif %}
+
+    <p>
+      He procurado su identificacion mediante sus resenados documentos.
+      Les juzgo capaces para formalizar la presente escritura de constitucion.
+    </p>
+
+    <p><span class="section-title">EXPONEN:</span></p>
+
+    {% if sections.primero_constitucion %}
+    <p><span class="section-title">PRIMERO.- CONSTITUCION Y ESTATUTOS DE "{{ company_name }}".</span></p>
+    <p>
+      Los comparecientes tienen la voluntad de constituir una sociedad de responsabilidad limitada,
+      con duracion indefinida, domicilio, objeto, capital y organos de administracion
+      conforme a los estatutos protocolizados.
+    </p>
+    <p>
+      Los estatutos se hallan extendidos en {{ statute_folios }} folios de papel exclusivo,
+      serie {{ statute_series }}, numeros {{ statute_numbers }}.
+    </p>
+    {% endif %}
+
+    {% if sections.segundo_capital %}
+    <p><span class="section-title">SEGUNDO.- CAPITAL, SUSCRIPCION Y DESEMBOLSO DE LAS PARTICIPACIONES SOCIALES.</span></p>
+    <p>
+      El capital social queda fijado en {{ capital_total_eur }} euros y dividido en
+      {{ shares_total }} participaciones iguales, de un valor nominal de {{ share_nominal_eur }} euros cada una.
+    </p>
+    <!-- Repeated partner subscription details -->
+    {% for socio in socios %}
+    <p>
+      {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] if loop.index0 < 26 else loop.index }}.
+      {{ socio.full_name | default("Pendiente") }} suscribe {{ socio.shares_subscribed | default(0) }} participaciones,
+      numeros del {{ socio.share_from | default(0) }} al {{ socio.share_to | default(0) }},
+      por un total de {{ socio.amount_eur | default(0) }} euros,
+      acreditado con certificacion de deposito en {{ socio.bank_entity | default("Entidad bancaria") }}
+      de fecha {{ socio.deposit_date | default("Pendiente") }}.
+    </p>
+    {% endfor %}
+    <p>
+      Todas las aportaciones son hechas en dinero y moneda nacional,
+      cuyo ingreso ha sido efectuado en la caja social.
+    </p>
+    {% endif %}
+
+    {% if sections.tercero_administracion %}
+    <p><span class="section-title">TERCERO.- NOMBRAMIENTO DE ADMINISTRADOR.</span></p>
+    <p>
+      Se nombra {{ administrator_scope }} por plazo {{ administrator_term }} a {{ administrator_name }},
+      quien acepta el cargo y representara a la sociedad en los actos comprendidos en el objeto social.
+    </p>
+    {% endif %}
+
+    {% if sections.cuarto_estipulaciones %}
+    <p><span class="section-title">CUARTO.- ESTIPULACIONES ESPECIALES.</span></p>
+    <p>
+      Durante la fase anterior a la inscripcion se confieren al organo de administracion
+      las mismas facultades atribuidas por estatutos y normativa aplicable.
+    </p>
+    {% endif %}
+
+    {% if sections.quinto_inhabilidades %}
+    <p><span class="section-title">QUINTO.- INHABILIDADES LEGALES. DECLARACION.</span></p>
+    <p>
+      Los nombrados para cargos sociales declaran que no se hallan incursos
+      en prohibiciones, incapacidades o incompatibilidades legales.
+    </p>
+    {% endif %}
+
+    {% if sections.sexto_certificacion %}
+    <p><span class="section-title">SEXTO.- CERTIFICACION DEL REGISTRO MERCANTIL CENTRAL.</span></p>
+    <p>
+      Se incorpora certificacion vigente acreditativa de inexistencia de denominacion identica preexistente.
+    </p>
+    {% endif %}
+
+    {% if sections.septimo_tramitacion %}
+    <p><span class="section-title">SEPTIMO.- TRAMITACION TELEMATICA.</span></p>
+    <p>
+      En el mismo dia del otorgamiento se remite copia autorizada electronica al Registro Mercantil
+      y se solicita telematicamente el CIF provisional de la sociedad.
+    </p>
+    {% endif %}
+
+    {% if sections.octavo_copia %}
+    <p><span class="section-title">OCTAVO.- COPIA AUTORIZADA EN SOPORTE PAPEL.</span></p>
+    <p>
+      Los comparecientes solicitan expedicion de copia autorizada completa,
+      incluyendo datos de inscripcion y atribucion del CIF.
+    </p>
+    {% endif %}
+
+    {% if sections.noveno_subsanacion %}
+    <p><span class="section-title">NOVENO.- SUBSANACION.</span></p>
+    <p>
+      Se faculta al notario autorizante para subsanar electronicamente defectos
+      advertidos por el Registrador Mercantil conforme a la calificacion registral.
+    </p>
+    {% endif %}
+
+    {% if sections.decimo_exenciones %}
+    <p><span class="section-title">DECIMO.- EXENCIONES Y BONIFICACIONES.</span></p>
+    <p>
+      Se solicita exencion por operaciones societarias de conformidad con {{ tax_exemption_article }}
+      y aplicacion de bonificaciones sobre honorarios notariales y registrales,
+      asi como exencion de tasas por publicacion en BORME.
+    </p>
+    {% endif %}
+
+    {% if sections.otorgamiento %}
+    <p><span class="section-title">OTORGAMIENTO Y AUTORIZACION.</span></p>
+    <p>
+      Hice las reservas y advertencias legales, en especial las fiscales y de proteccion de datos,
+      y doy fe de identidad, capacidad y consentimiento libremente prestado por los otorgantes.
+    </p>
+    <p>
+      Instrumento extendido en {{ matrix_folios_total }} folios de papel timbrado,
+      el presente y los {{ matrix_following_folios }} siguientes en orden de numeracion,
+      serie {{ matrix_series }}.
+    </p>
+    <p>Direccion de la notaria: {{ notary_address }}.</p>
+    {% endif %}
+
+    {% if sections.firmas %}
+    <p><span class="section-title">FIRMAS.</span></p>
+    <!-- Signature placeholders can be driven by signatories list from document workflow -->
+    <table class="signature-grid">
+      <tr>
+        <td>
+          <div class="signature-line">Notario: {{ notary_name }}</div>
+        </td>
+        <td>
+          <div class="signature-line">Administrador: {{ administrator_name }}</div>
+        </td>
+      </tr>
+      {% for signer in signatories %}
+      {% if loop.index0 % 2 == 0 %}<tr>{% endif %}
+        <td>
+          <div class="signature-line">
+            Socio {{ loop.index }}: {{ signer.full_name | default("Pendiente") }}
+            {% if signer.role %}({{ signer.role }}){% endif %}
+          </div>
+        </td>
+      {% if loop.index0 % 2 == 1 %}</tr>{% endif %}
+      {% endfor %}
+      {% if (signatories | length) % 2 == 1 %}<td></td></tr>{% endif %}
+    </table>
+    {% endif %}
+  </div>
+</body>
+</html>
