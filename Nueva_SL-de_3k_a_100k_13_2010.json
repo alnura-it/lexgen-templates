@@ -1,101 +1,297 @@
 {
-  "numero_escritura": "NUMERO: 132/2010",
-  "city": "Almoradi",
-  "grant_date": "26 de enero de 2011",
-  "notary_name": "S. Lorenzo Serra",
-  "notary_college": "Ilustre Colegio de Valencia",
-  "company_name": "Alnura Servicios Integrales, Sociedad Limitada",
-  "statute_folios": 8,
-  "statute_series": "BN",
-  "statute_numbers": "4501-4508",
-  "capital_total_eur": 30000,
-  "shares_total": 300,
-  "share_nominal_eur": 100,
-  "administrator_scope": "Administrador unico",
-  "administrator_term": "INDEFINIDO",
-  "administrator_name": "Carlos Navarro Gomez",
-  "tax_exemption_article": "Articulo 45.1B.11",
-  "notary_address": "calle Mayor, numero 18-1, Almoradi (Alicante)",
-  "matrix_folios_total": 11,
-  "matrix_series": "BN",
-  "matrix_following_folios": 10,
-  "show_draft_watermark": true,
-  "draft_watermark_text": "BORRADOR",
-  "visible_sections": {
-    "primero_constitucion": true,
-    "segundo_capital": true,
-    "tercero_administracion": true,
-    "cuarto_estipulaciones": true,
-    "quinto_inhabilidades": true,
-    "sexto_certificacion": true,
-    "septimo_tramitacion": true,
-    "octavo_copia": true,
-    "noveno_subsanacion": true,
-    "decimo_exenciones": true,
-    "otorgamiento": true,
-    "firmas": true
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "numero_escritura": {
+      "type": "string",
+      "title": "Numero de escritura",
+      "default": "NUMERO: 0001"
+    },
+    "city": {
+      "type": "string",
+      "title": "Ciudad",
+      "default": "Almoradi"
+    },
+    "grant_date": {
+      "type": "string",
+      "title": "Fecha de otorgamiento",
+      "default": "08 de septiembre de 2026"
+    },
+    "notary_name": {
+      "type": "string",
+      "title": "Nombre del notario",
+      "default": "Nombre del Notario"
+    },
+    "notary_college": {
+      "type": "string",
+      "title": "Colegio notarial",
+      "default": "Ilustre Colegio de Valencia"
+    },
+    "company_name": {
+      "type": "string",
+      "title": "Nombre de la sociedad",
+      "default": "Empresa Ejemplo, Sociedad Limitada"
+    },
+    "statute_folios": {
+      "type": "integer",
+      "title": "Folios de estatutos",
+      "default": 8,
+      "minimum": 0
+    },
+    "statute_series": {
+      "type": "string",
+      "title": "Serie de estatutos",
+      "default": "A"
+    },
+    "statute_numbers": {
+      "type": "string",
+      "title": "Numeros de estatutos",
+      "default": "1001-1008"
+    },
+    "capital_total_eur": {
+      "type": "number",
+      "title": "Capital total (EUR)",
+      "default": 30000,
+      "minimum": 0
+    },
+    "shares_total": {
+      "type": "integer",
+      "title": "Total de participaciones",
+      "default": 300,
+      "minimum": 0
+    },
+    "share_nominal_eur": {
+      "type": "number",
+      "title": "Valor nominal por participacion (EUR)",
+      "default": 100,
+      "minimum": 0
+    },
+    "administrator_scope": {
+      "type": "string",
+      "title": "Tipo de administrador",
+      "default": "Administrador unico"
+    },
+    "administrator_term": {
+      "type": "string",
+      "title": "Plazo del cargo",
+      "default": "INDEFINIDO"
+    },
+    "administrator_name": {
+      "type": "string",
+      "title": "Nombre del administrador",
+      "default": "Pendiente"
+    },
+    "tax_exemption_article": {
+      "type": "string",
+      "title": "Articulo de exencion fiscal",
+      "default": "Articulo 45.1B.11"
+    },
+    "notary_address": {
+      "type": "string",
+      "title": "Direccion de la notaria",
+      "default": "calle Mayor, numero 18-1, Almoradi (Alicante)"
+    },
+    "matrix_folios_total": {
+      "type": "integer",
+      "title": "Folios totales de matriz",
+      "default": 11,
+      "minimum": 1
+    },
+    "matrix_series": {
+      "type": "string",
+      "title": "Serie de matriz",
+      "default": "A"
+    },
+    "matrix_following_folios": {
+      "type": "integer",
+      "title": "Folios siguientes de matriz",
+      "default": 10,
+      "minimum": 0
+    },
+    "show_draft_watermark": {
+      "type": "boolean",
+      "title": "Mostrar marca de agua de borrador",
+      "default": true
+    },
+    "draft_watermark_text": {
+      "type": "string",
+      "title": "Texto de marca de agua",
+      "default": "BORRADOR"
+    },
+    "visible_sections": {
+      "type": "object",
+      "title": "Secciones visibles",
+      "properties": {
+        "primero_constitucion": {
+          "type": "boolean",
+          "title": "Primero - Constitucion",
+          "default": true
+        },
+        "segundo_capital": {
+          "type": "boolean",
+          "title": "Segundo - Capital",
+          "default": true
+        },
+        "tercero_administracion": {
+          "type": "boolean",
+          "title": "Tercero - Administracion",
+          "default": true
+        },
+        "cuarto_estipulaciones": {
+          "type": "boolean",
+          "title": "Cuarto - Estipulaciones",
+          "default": true
+        },
+        "quinto_inhabilidades": {
+          "type": "boolean",
+          "title": "Quinto - Inhabilidades",
+          "default": true
+        },
+        "sexto_certificacion": {
+          "type": "boolean",
+          "title": "Sexto - Certificacion",
+          "default": true
+        },
+        "septimo_tramitacion": {
+          "type": "boolean",
+          "title": "Septimo - Tramitacion",
+          "default": true
+        },
+        "octavo_copia": {
+          "type": "boolean",
+          "title": "Octavo - Copia",
+          "default": true
+        },
+        "noveno_subsanacion": {
+          "type": "boolean",
+          "title": "Noveno - Subsanacion",
+          "default": true
+        },
+        "decimo_exenciones": {
+          "type": "boolean",
+          "title": "Decimo - Exenciones",
+          "default": true
+        },
+        "otorgamiento": {
+          "type": "boolean",
+          "title": "Otorgamiento y autorizacion",
+          "default": true
+        },
+        "firmas": {
+          "type": "boolean",
+          "title": "Firmas",
+          "default": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "comparecientes": {
+      "type": "array",
+      "title": "Comparecientes",
+      "items": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "title": "Nombre completo"
+          },
+          "id_document_type": {
+            "type": "string",
+            "title": "Tipo de documento",
+            "default": "DNI"
+          },
+          "id_document": {
+            "type": "string",
+            "title": "Numero de documento"
+          },
+          "address": {
+            "type": "string",
+            "title": "Domicilio"
+          }
+        },
+        "required": ["full_name"],
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "socios": {
+      "type": "array",
+      "title": "Socios suscriptores",
+      "items": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "title": "Nombre completo"
+          },
+          "shares_subscribed": {
+            "type": "integer",
+            "title": "Participaciones suscritas",
+            "minimum": 0,
+            "default": 0
+          },
+          "share_from": {
+            "type": "integer",
+            "title": "Numero desde",
+            "minimum": 0,
+            "default": 0
+          },
+          "share_to": {
+            "type": "integer",
+            "title": "Numero hasta",
+            "minimum": 0,
+            "default": 0
+          },
+          "amount_eur": {
+            "type": "number",
+            "title": "Importe (EUR)",
+            "minimum": 0,
+            "default": 0
+          },
+          "bank_entity": {
+            "type": "string",
+            "title": "Entidad bancaria",
+            "default": "Entidad bancaria"
+          },
+          "deposit_date": {
+            "type": "string",
+            "title": "Fecha de deposito",
+            "default": "Pendiente"
+          }
+        },
+        "required": ["full_name"],
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "signatories": {
+      "type": "array",
+      "title": "Firmantes",
+      "items": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "title": "Nombre completo"
+          },
+          "role": {
+            "type": "string",
+            "title": "Rol"
+          }
+        },
+        "required": ["full_name"],
+        "additionalProperties": false
+      },
+      "default": []
+    }
   },
-  "comparecientes": [
-    {
-      "full_name": "Carlos Navarro Gomez",
-      "id_document_type": "DNI",
-      "id_document": "12345678A",
-      "address": "Calle Limon 14, Almoradi"
-    },
-    {
-      "full_name": "Maria Torres Ruiz",
-      "id_document_type": "DNI",
-      "id_document": "87654321B",
-      "address": "Avenida Libertad 2, Almoradi"
-    },
-    {
-      "full_name": "Javier Morales Diaz",
-      "id_document_type": "DNI",
-      "id_document": "23456789C",
-      "address": "Plaza Nueva 5, Almoradi"
-    }
+  "required": [
+    "numero_escritura",
+    "city",
+    "grant_date",
+    "notary_name",
+    "notary_college",
+    "company_name"
   ],
-  "socios": [
-    {
-      "full_name": "Carlos Navarro Gomez",
-      "shares_subscribed": 120,
-      "share_from": 1,
-      "share_to": 120,
-      "amount_eur": 12000,
-      "bank_entity": "Banco Mediterraneo",
-      "deposit_date": "25 de enero de 2011"
-    },
-    {
-      "full_name": "Maria Torres Ruiz",
-      "shares_subscribed": 90,
-      "share_from": 121,
-      "share_to": 210,
-      "amount_eur": 9000,
-      "bank_entity": "Banco Mediterraneo",
-      "deposit_date": "25 de enero de 2011"
-    },
-    {
-      "full_name": "Javier Morales Diaz",
-      "shares_subscribed": 90,
-      "share_from": 211,
-      "share_to": 300,
-      "amount_eur": 9000,
-      "bank_entity": "Banco Mediterraneo",
-      "deposit_date": "25 de enero de 2011"
-    }
-  ],
-  "signatories": [
-    {
-      "full_name": "Carlos Navarro Gomez",
-      "role": "Socio fundador"
-    },
-    {
-      "full_name": "Maria Torres Ruiz",
-      "role": "Socia fundadora"
-    },
-    {
-      "full_name": "Javier Morales Diaz",
-      "role": "Socio fundador"
-    }
-  ]
+  "additionalProperties": false
 }

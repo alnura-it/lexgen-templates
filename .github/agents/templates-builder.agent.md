@@ -35,6 +35,6 @@ Output format:
 - Files created or updated.
 - Consider source_file_name as the PDF or Word document name without extension.
 - Template filename must follow the naming convention: {source_file_name}.jinja2. 
-- Sample data filename must follow the naming convention: {source_file_name}.json
+- Sample data filename must follow the naming convention: {source_file_name}-sample.json
 - HTML preview filename must follow the naming convention: {source_file_name}.html. 
 
