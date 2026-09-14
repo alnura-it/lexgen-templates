@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "visible_sections": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparecencia": { "type": "boolean", "default": true },
+        "primero_constitucion": { "type": "boolean", "default": true },
+        "segundo_capital": { "type": "boolean", "default": true },
+        "tercero_administracion": { "type": "boolean", "default": true },
+        "cuarto_estipulaciones": { "type": "boolean", "default": true },
+        "quinto_inhabilidades": { "type": "boolean", "default": true },
+        "sexto_certificacion": { "type": "boolean", "default": true },
+        "septimo_tramitacion": { "type": "boolean", "default": true },
+        "octavo_copia": { "type": "boolean", "default": true },
+        "noveno_subsanacion": { "type": "boolean", "default": true },
+        "decimo_exenciones": { "type": "boolean", "default": true },
+        "otorgamiento_autorizacion": { "type": "boolean", "default": true },
+        "firmas": { "type": "boolean", "default": true }
+      }
+    },
+    "comparecencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numero_escritura": { "type": "string", "default": "NUMERO: 0001" },
+        "city": { "type": "string", "default": "Almoradi" },
+        "grant_date": { "type": "string", "default": "14 de septiembre de 2026" },
+        "notary_name": { "type": "string", "default": "Luis Lorenzo Serra" },
+        "notary_college": { "type": "string", "default": "Ilustre Colegio de Valencia" },
+        "show_draft_watermark": { "type": "boolean", "default": true },
+        "draft_watermark_text": { "type": "string", "default": "BORRADOR" },
+        "comparecientes": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "full_name": { "type": "string", "default": "Pendiente" },
+              "id_document_type": { "type": "string", "default": "DNI" },
+              "id_document": { "type": "string", "default": "Pendiente" },
+              "address": { "type": "string", "default": "Pendiente" }
+            }
+          }
+        }
+      }
+    },
+    "primero_constitucion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "company_name": { "type": "string", "default": "Ejemplo Sociedad Limitada" },
+        "duration": { "type": "string", "default": "indefinida" },
+        "registered_address": { "type": "string", "default": "Almoradi (Alicante)" },
+        "social_object": { "type": "string", "default": "Servicios profesionales" },
+        "statute_folios": { "type": "integer", "default": 8 },
+        "statute_series": { "type": "string", "default": "A" },
+        "statute_numbers": { "type": "string", "default": "1001-1008" }
+      }
+    },
+    "segundo_capital": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capital_total_eur": { "type": "number", "default": 3000 },
+        "shares_total": { "type": "integer", "default": 300 },
+        "share_nominal_eur": { "type": "number", "default": 10 },
+        "socios": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": { "type": "string", "default": "Socio" },
+              "full_name": { "type": "string", "default": "Pendiente" },
+              "shares_subscribed": { "type": "integer", "default": 0 },
+              "share_from": { "type": "integer", "default": 0 },
+              "share_to": { "type": "integer", "default": 0 },
+              "amount_eur": { "type": "number", "default": 0 },
+              "bank_entity": { "type": "string", "default": "Entidad bancaria" },
+              "deposit_date": { "type": "string", "default": "Pendiente" }
+            }
+          }
+        }
+      }
+    },
+    "tercero_administracion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "administrator_scope": { "type": "string", "default": "administrador unico" },
+        "administrator_term": { "type": "string", "default": "INDEFINIDO" },
+        "administrator_name": { "type": "string", "default": "Pendiente de designacion" }
+      }
+    },
+    "decimo_exenciones": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tax_exemption_article": { "type": "string", "default": "Articulo 45.1B.11" }
+      }
+    },
+    "otorgamiento_autorizacion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "notary_address": {
+          "type": "string",
+          "default": "calle Mayor, numero 18-1, Almoradi (Alicante)"
+        },
+        "matrix_folios_total": { "type": "integer", "default": 11 },
+        "matrix_series": { "type": "string", "default": "A" },
+        "matrix_following_folios": { "type": "integer", "default": 10 }
+      }
+    },
+    "firmas": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "signatories": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "full_name": { "type": "string", "default": "Pendiente" },
+              "role": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

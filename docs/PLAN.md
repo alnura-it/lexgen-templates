@@ -66,13 +66,13 @@ The implementation MUST use the following variables:
 ## Output
 
 ```text
-termplates/{DOCUMENT}/
+templates/{DOCUMENT}/
 ├── {DOCUMENT}-sample.json
 ├── {DOCUMENT}.jinja2
 └── {DOCUMENT}.html
 ```
 
-## Success Crit*ria
+## Success Criteria
 
 - Output directory exists.
 - All generated templates are valid.
@@ -80,7 +80,7 @@ termplates/{DOCUMENT}/
 
 ---
 
-# Handoff*
+# Handoff
 The jinja2 template generated in Phase 1 become the mandatory input for Phase 2.
 
 Input location:
@@ -111,7 +111,7 @@ templates/{DOCUMENT}/{DOCUMENT}.jinja2
 ## Output
 
 ```text
-templates/{DOCUMENT}/{DOCUMENT}.jinja2  
+templates/{DOCUMENT}/{DOCUMENT}.json
 ```
 
 ## Success Criteria
@@ -121,14 +121,14 @@ templates/{DOCUMENT}/{DOCUMENT}.jinja2
 
 ---
 
-# *hase 3 - Publish Artifacts
+# Phase 3 - Publish Artifacts
 
-## Sou*ce
+## Source
 
 ```text
-{DOCUMENT}/{DOCUMENT}.jinja2
-{DOCUMENT}/{DOCUMENT}.json
-```*
+templates/{DOCUMENT}/{DOCUMENT}.jinja2
+templates/{DOCUMENT}/{DOCUMENT}.json
+```
 ## Destination
 
 ```text
@@ -138,14 +138,35 @@ templates/{DOCUMENT}/{DOCUMENT}.jinja2
 ## Responsibilities
 
 - Copy generated artifacts.
-- Replace existing versions when necess*ry.
+- Replace existing versions when necessary.
 - Validate copied files.
+
+## Execution
+
+```bash
+# Run from lexgen-templates repository root
+set -e
+DOC="{DOCUMENT}"
+SRC_DIR="templates/${DOC}"
+DST_DIR="../lexgen-backend/templates"
+
+test -f "${SRC_DIR}/${DOC}.jinja2"
+test -f "${SRC_DIR}/${DOC}.json"
+mkdir -p "${DST_DIR}"
+
+cp -f "${SRC_DIR}/${DOC}.jinja2" "${DST_DIR}/${DOC}.jinja2"
+cp -f "${SRC_DIR}/${DOC}.json" "${DST_DIR}/${DOC}.json"
+
+test -f "${DST_DIR}/${DOC}.jinja2"
+test -f "${DST_DIR}/${DOC}.json"
+echo "Publish OK: ${DOC}.jinja2 and ${DOC}.json"
+```
 
 ## Validation
 
 - File counts match.
 - Required artifacts exist in destination.
-- Copy operation completed sucessfully.
+- Copy operation completed successfully.
 
 ## Success Criteria
 
@@ -153,11 +174,11 @@ The {DOCUMENT}/{DOCUMENT}.jinja2 template and the {DOCUMENT}/{DOCUMENT}.json for
 
 ---
 
-#*Phase 4 - Update Database
+# Phase 4 - Update Database
 
-## Data*ase
+## Database
 
-Database is running locally as a container (podman). The .env file contains the container id od the database, the database user, its password and the database name.
+Database is running locally as a container (podman). The .env file contains the container id, database user, password, and default database name.
 
 ## Inputs
 
@@ -169,17 +190,39 @@ Database is running locally as a container (podman). The .env file contains the 
 
 ## Responsibilities
 
-Connect to the database and create a new template (template) assigned to the acme oganization.
+Connect to the database and create a new template assigned to the acme organization.
 If the template already exist don't overwrite anything. This is not an error.
+
+## Execution
+
+```bash
+# Run from lexgen-templates repository root
+set -e
+
+CONTAINER_ID=$(awk -F': *' '/^container_id:/ {print $2}' .env)
+DB_USER=$(awk -F': *' '/^db_user:/ {print $2}' .env)
+DB_PWD=$(awk -F': *' '/^db_pwd:/ {print $2}' .env)
+
+# IMPORTANT:
+# Metadata tables (templates, organizations, organization_templates)
+# must exist in the target DB. In this project that DB is usually lexgen.
+TARGET_DB="lexgen"
+
+podman exec -i "$CONTAINER_ID" psql -U "$DB_USER" -d "$TARGET_DB" -c "\\dt templates"
+
+PGPASSWORD="$DB_PWD" podman exec -i "$CONTAINER_ID" \
+    psql -U "$DB_USER" -d "$TARGET_DB" -f - \
+    < "templates/{DOCUMENT}/phase4-register-template.sql"
+```
 
 ## Validation
 
 - No failed inserts or updates.
 
 ---
-*# Failure Handling
+# Failure Handling
 
-## Template Ge*eration Failure
+## Template Generation Failure
 
 - Stop execution.
 - Do not execute subsequent phases.
@@ -206,7 +249,7 @@ If the template already exist don't overwrite anything. This is not an error.
 
 Verify that:
 
-- A jinga2 templates was generated.
+- A jinja2 template was generated.
 - A RJSF artifact was generated.
 - Files were published.
 - Database records were updated.
@@ -216,14 +259,15 @@ Verify that:
 
 Produce a final execution summary containing:
 
-``*text
+```text
 Application:
 Generated templates:
 Generated RJSF artifacts:
 HTML sample: 
 Warnings:
 Errors:
-Final Status:*```
+Final Status:
+```
 
 ---
 

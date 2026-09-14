@@ -1,0 +1,88 @@
+{
+  "numero_escritura": "NUMERO: 0147",
+  "city": "Almoradi",
+  "grant_date": "14 de septiembre de 2026",
+  "notary_name": "Luis Lorenzo Serra",
+  "notary_college": "Ilustre Colegio de Valencia",
+  "company_name": "Nueva SL de 3k a 100k",
+  "duration": "indefinida",
+  "registered_address": "Almoradi (Alicante), calle Mayor 12",
+  "social_object": "Servicios de consultoria y gestion empresarial",
+  "statute_folios": 11,
+  "statute_series": "A",
+  "statute_numbers": "2401-2411",
+  "capital_total_eur": 18000,
+  "shares_total": 1800,
+  "share_nominal_eur": 10,
+  "administrator_scope": "administrador unico",
+  "administrator_term": "INDEFINIDO",
+  "administrator_name": "Marta Perez Gomez",
+  "tax_exemption_article": "Articulo 45.1B.11",
+  "notary_address": "calle Mayor, numero 18-1, Almoradi (Alicante)",
+  "matrix_folios_total": 11,
+  "matrix_series": "A",
+  "matrix_following_folios": 10,
+  "show_draft_watermark": true,
+  "draft_watermark_text": "BORRADOR",
+  "visible_sections": {
+    "comparecencia": true,
+    "primero_constitucion": true,
+    "segundo_capital": true,
+    "tercero_administracion": true,
+    "cuarto_estipulaciones": true,
+    "quinto_inhabilidades": true,
+    "sexto_certificacion": true,
+    "septimo_tramitacion": true,
+    "octavo_copia": true,
+    "noveno_subsanacion": true,
+    "decimo_exenciones": true,
+    "otorgamiento_autorizacion": true,
+    "firmas": true
+  },
+  "comparecientes": [
+    {
+      "full_name": "Ana Ruiz Navarro",
+      "id_document_type": "DNI",
+      "id_document": "12345678A",
+      "address": "Avenida del Puerto 8, Valencia"
+    },
+    {
+      "full_name": "Jorge Marin Soler",
+      "id_document_type": "DNI",
+      "id_document": "23456789B",
+      "address": "Calle Riu 21, Alicante"
+    }
+  ],
+  "socios": [
+    {
+      "label": "A)",
+      "full_name": "Ana Ruiz Navarro",
+      "shares_subscribed": 900,
+      "share_from": 1,
+      "share_to": 900,
+      "amount_eur": 9000,
+      "bank_entity": "Banco Mediterraneo",
+      "deposit_date": "12/09/2026"
+    },
+    {
+      "label": "B)",
+      "full_name": "Jorge Marin Soler",
+      "shares_subscribed": 900,
+      "share_from": 901,
+      "share_to": 1800,
+      "amount_eur": 9000,
+      "bank_entity": "Banco Mediterraneo",
+      "deposit_date": "12/09/2026"
+    }
+  ],
+  "signatories": [
+    {
+      "full_name": "Ana Ruiz Navarro",
+      "role": "Socia fundadora"
+    },
+    {
+      "full_name": "Jorge Marin Soler",
+      "role": "Socio fundador"
+    }
+  ]
+}
