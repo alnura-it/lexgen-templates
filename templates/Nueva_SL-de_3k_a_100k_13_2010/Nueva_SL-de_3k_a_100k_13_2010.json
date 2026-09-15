@@ -7,130 +7,430 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "comparecencia": { "type": "boolean", "default": true },
-        "primero_constitucion": { "type": "boolean", "default": true },
-        "segundo_capital": { "type": "boolean", "default": true },
-        "tercero_administracion": { "type": "boolean", "default": true },
-        "cuarto_estipulaciones": { "type": "boolean", "default": true },
-        "quinto_inhabilidades": { "type": "boolean", "default": true },
-        "sexto_certificacion": { "type": "boolean", "default": true },
-        "septimo_tramitacion": { "type": "boolean", "default": true },
-        "octavo_copia": { "type": "boolean", "default": true },
-        "noveno_subsanacion": { "type": "boolean", "default": true },
-        "decimo_exenciones": { "type": "boolean", "default": true },
-        "otorgamiento_autorizacion": { "type": "boolean", "default": true },
-        "firmas": { "type": "boolean", "default": true }
+        "comparecencia": {
+          "type": "boolean",
+          "default": true
+        },
+        "constitucion": {
+          "type": "boolean",
+          "default": true
+        },
+        "capital": {
+          "type": "boolean",
+          "default": true
+        },
+        "nombramiento_administrador": {
+          "type": "boolean",
+          "default": true
+        },
+        "estipulaciones_especiales": {
+          "type": "boolean",
+          "default": true
+        },
+        "inhabilidades": {
+          "type": "boolean",
+          "default": true
+        },
+        "certificacion_rmc": {
+          "type": "boolean",
+          "default": true
+        },
+        "tramitacion_telematica": {
+          "type": "boolean",
+          "default": true
+        },
+        "copia_autorizada": {
+          "type": "boolean",
+          "default": true
+        },
+        "subsanacion": {
+          "type": "boolean",
+          "default": true
+        },
+        "exenciones_bonificaciones": {
+          "type": "boolean",
+          "default": true
+        },
+        "otorgamiento_autorizacion": {
+          "type": "boolean",
+          "default": true
+        },
+        "firmas": {
+          "type": "boolean",
+          "default": true
+        }
       }
     },
     "comparecencia": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "numero_escritura": { "type": "string", "default": "NUMERO: 0001" },
-        "city": { "type": "string", "default": "Almoradi" },
-        "grant_date": { "type": "string", "default": "14 de septiembre de 2026" },
-        "notary_name": { "type": "string", "default": "Luis Lorenzo Serra" },
-        "notary_college": { "type": "string", "default": "Ilustre Colegio de Valencia" },
-        "show_draft_watermark": { "type": "boolean", "default": true },
-        "draft_watermark_text": { "type": "string", "default": "BORRADOR" },
+        "instrument_number": {
+          "type": "string",
+          "default": "0001"
+        },
+        "city": {
+          "type": "string",
+          "default": "Almoradi"
+        },
+        "signing_date": {
+          "type": "string",
+          "default": "26 de enero de 2011"
+        },
+        "notary_name": {
+          "type": "string",
+          "default": "Lorenzo Serra"
+        },
+        "notary_college": {
+          "type": "string",
+          "default": "Ilustre Colegio de Valencia"
+        },
         "comparecientes": {
           "type": "array",
-          "default": [],
+          "default": [
+            {
+              "display_name": "Don Juan Perez",
+              "id_document": "DNI 00000000A",
+              "address": "Calle Mayor 1, Almoradi",
+              "civil_status": "casado"
+            },
+            {
+              "display_name": "Dona Maria Gomez",
+              "id_document": "DNI 00000001B",
+              "address": "Avenida Sol 22, Almoradi",
+              "civil_status": "soltera"
+            }
+          ],
           "items": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "full_name": { "type": "string", "default": "Pendiente" },
-              "id_document_type": { "type": "string", "default": "DNI" },
-              "id_document": { "type": "string", "default": "Pendiente" },
-              "address": { "type": "string", "default": "Pendiente" }
+              "display_name": {
+                "type": "string",
+                "default": "Don Juan Perez"
+              },
+              "id_document": {
+                "type": "string",
+                "default": "DNI 00000000A"
+              },
+              "address": {
+                "type": "string",
+                "default": "Calle Mayor 1, Almoradi"
+              },
+              "civil_status": {
+                "type": "string",
+                "default": "casado"
+              }
+            }
+          }
+        },
+        "draft": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "show_watermark": {
+              "type": "boolean",
+              "default": true
+            },
+            "watermark_text": {
+              "type": "string",
+              "default": "BORRADOR"
             }
           }
         }
       }
     },
-    "primero_constitucion": {
+    "constitucion": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "company_name": { "type": "string", "default": "Ejemplo Sociedad Limitada" },
-        "duration": { "type": "string", "default": "indefinida" },
-        "registered_address": { "type": "string", "default": "Almoradi (Alicante)" },
-        "social_object": { "type": "string", "default": "Servicios profesionales" },
-        "statute_folios": { "type": "integer", "default": 8 },
-        "statute_series": { "type": "string", "default": "A" },
-        "statute_numbers": { "type": "string", "default": "1001-1008" }
+        "company": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": "Nueva SL de 3k a 100k"
+            },
+            "legal_type": {
+              "type": "string",
+              "default": "Sociedad Limitada"
+            },
+            "duration": {
+              "type": "string",
+              "default": "indefinida"
+            },
+            "registered_address": {
+              "type": "string",
+              "default": "Almoradi (Alicante)"
+            },
+            "corporate_purpose": {
+              "type": "string",
+              "default": "Servicios de consultoria y gestion"
+            },
+            "estatutos_folios_count": {
+              "type": "integer",
+              "default": 12
+            },
+            "estatutos_series": {
+              "type": "string",
+              "default": "AA"
+            },
+            "estatutos_numbers": {
+              "type": "string",
+              "default": "100001 al 100012"
+            },
+            "real_decreto_ref": {
+              "type": "string",
+              "default": "Real Decreto Ley 13/2010"
+            }
+          }
+        }
       }
     },
-    "segundo_capital": {
+    "capital": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "capital_total_eur": { "type": "number", "default": 3000 },
-        "shares_total": { "type": "integer", "default": 300 },
-        "share_nominal_eur": { "type": "number", "default": 10 },
-        "socios": {
+        "capital": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "total_eur": {
+              "type": "number",
+              "default": 30000
+            },
+            "total_shares": {
+              "type": "integer",
+              "default": 30000
+            },
+            "nominal_share_value_eur": {
+              "type": "number",
+              "default": 1
+            },
+            "currency": {
+              "type": "string",
+              "default": "euros"
+            }
+          }
+        },
+        "contributions": {
           "type": "array",
-          "default": [],
+          "default": [
+            {
+              "partner_name": "Don Juan Perez",
+              "shares": 15000,
+              "from_share": 1,
+              "to_share": 15000,
+              "amount_eur": 15000,
+              "bank_entity": "Banco Ejemplo",
+              "certificate_date": "25 de enero de 2011"
+            },
+            {
+              "partner_name": "Dona Maria Gomez",
+              "shares": 10000,
+              "from_share": 15001,
+              "to_share": 25000,
+              "amount_eur": 10000,
+              "bank_entity": "Banco Ejemplo",
+              "certificate_date": "25 de enero de 2011"
+            },
+            {
+              "partner_name": "Don Pedro Ruiz",
+              "shares": 5000,
+              "from_share": 25001,
+              "to_share": 30000,
+              "amount_eur": 5000,
+              "bank_entity": "Banco Ejemplo",
+              "certificate_date": "25 de enero de 2011"
+            }
+          ],
           "items": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "label": { "type": "string", "default": "Socio" },
-              "full_name": { "type": "string", "default": "Pendiente" },
-              "shares_subscribed": { "type": "integer", "default": 0 },
-              "share_from": { "type": "integer", "default": 0 },
-              "share_to": { "type": "integer", "default": 0 },
-              "amount_eur": { "type": "number", "default": 0 },
-              "bank_entity": { "type": "string", "default": "Entidad bancaria" },
-              "deposit_date": { "type": "string", "default": "Pendiente" }
+              "partner_name": {
+                "type": "string",
+                "default": "Don Juan Perez"
+              },
+              "shares": {
+                "type": "integer",
+                "default": 15000
+              },
+              "from_share": {
+                "type": "integer",
+                "default": 1
+              },
+              "to_share": {
+                "type": "integer",
+                "default": 15000
+              },
+              "amount_eur": {
+                "type": "number",
+                "default": 15000
+              },
+              "bank_entity": {
+                "type": "string",
+                "default": "Banco Ejemplo"
+              },
+              "certificate_date": {
+                "type": "string",
+                "default": "25 de enero de 2011"
+              }
             }
           }
         }
       }
     },
-    "tercero_administracion": {
+    "nombramiento_administrador": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "administrator_scope": { "type": "string", "default": "administrador unico" },
-        "administrator_term": { "type": "string", "default": "INDEFINIDO" },
-        "administrator_name": { "type": "string", "default": "Pendiente de designacion" }
+        "administration": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "position_label": {
+              "type": "string",
+              "default": "Administrador unico"
+            },
+            "administrators": {
+              "type": "array",
+              "default": [
+                "Don Juan Perez"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "term": {
+              "type": "string",
+              "default": "indefinido"
+            },
+            "acceptance_text": {
+              "type": "string",
+              "default": "El designado acepta el cargo"
+            }
+          }
+        }
       }
     },
-    "decimo_exenciones": {
+    "inhabilidades": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "tax_exemption_article": { "type": "string", "default": "Articulo 45.1B.11" }
+        "legal_refs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "inhabilidades_article": {
+              "type": "string",
+              "default": "Articulo 230 de la Ley de Sociedad de Capital"
+            }
+          }
+        }
+      }
+    },
+    "exenciones_bonificaciones": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "legal_refs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tax_exemption_article": {
+              "type": "string",
+              "default": "Articulo 45.1B.11 del texto refundido del ITP y AJD"
+            }
+          }
+        }
       }
     },
     "otorgamiento_autorizacion": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "notary_address": {
-          "type": "string",
-          "default": "calle Mayor, numero 18-1, Almoradi (Alicante)"
+        "legal_refs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "lopd_law": {
+              "type": "string",
+              "default": "Ley Organica 1999, de 13 de diciembre, de Proteccion de Datos de Caracter Personal"
+            }
+          }
         },
-        "matrix_folios_total": { "type": "integer", "default": 11 },
-        "matrix_series": { "type": "string", "default": "A" },
-        "matrix_following_folios": { "type": "integer", "default": 10 }
+        "notary_office": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "street": {
+              "type": "string",
+              "default": "Calle Mayor"
+            },
+            "number": {
+              "type": "string",
+              "default": "18-1"
+            },
+            "city": {
+              "type": "string",
+              "default": "Almoradi"
+            },
+            "province": {
+              "type": "string",
+              "default": "Alicante"
+            }
+          }
+        }
       }
     },
     "firmas": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "signatories": {
-          "type": "array",
-          "default": [],
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "full_name": { "type": "string", "default": "Pendiente" },
-              "role": { "type": "string" }
+        "signature_block": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "location": {
+              "type": "string",
+              "default": "Almoradi"
+            },
+            "date": {
+              "type": "string",
+              "default": "26 de enero de 2011"
+            },
+            "signatories": {
+              "type": "array",
+              "default": [
+                {
+                  "role": "Socio fundador",
+                  "name": "Don Juan Perez"
+                },
+                {
+                  "role": "Socia fundadora",
+                  "name": "Dona Maria Gomez"
+                },
+                {
+                  "role": "Notario",
+                  "name": "Lorenzo Serra"
+                }
+              ],
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "default": "Socio fundador"
+                  },
+                  "name": {
+                    "type": "string",
+                    "default": "Don Juan Perez"
+                  }
+                }
+              }
             }
           }
         }

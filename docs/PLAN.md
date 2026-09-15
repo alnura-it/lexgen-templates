@@ -1,4 +1,14 @@
 # PLAN.md
+# MODE: AUTONOMOUS
+
+Complete the entire plan end-to-end. Do not ask intermediate questions. Make reasonable assumptions. Report assumptions at the end.
+
+## Autonomous Execution Contract
+
+- Execute all phases sequentially without pausing for confirmations.
+- If an input is missing, infer the safest default and continue.
+- Stop only on hard validation failures defined in this plan.
+- Produce one final summary with assumptions and any partial-completion details.
 
 # Objective
 
@@ -60,16 +70,13 @@ The implementation MUST use the following variables:
 - Read source document.
 - Generate a jinja2 template.
 - Validate generated templates.
-- Produce a manifest describing generated artifacts.
 - Report any generation or validation errors.
 
 ## Output
 
 ```text
 templates/{DOCUMENT}/
-├── {DOCUMENT}-sample.json
-├── {DOCUMENT}.jinja2
-└── {DOCUMENT}.html
+└── {DOCUMENT}.jinja2
 ```
 
 ## Success Criteria
@@ -253,6 +260,12 @@ Verify that:
 - A RJSF artifact was generated.
 - Files were published.
 - Database records were updated.
+
+Expected local artifacts after successful run:
+
+- templates/{DOCUMENT}/{DOCUMENT}.jinja2
+- templates/{DOCUMENT}/{DOCUMENT}.json
+- templates/{DOCUMENT}/phase4-register-template.sql
 ---
 
 # Deliverable
@@ -263,7 +276,6 @@ Produce a final execution summary containing:
 Application:
 Generated templates:
 Generated RJSF artifacts:
-HTML sample: 
 Warnings:
 Errors:
 Final Status:
